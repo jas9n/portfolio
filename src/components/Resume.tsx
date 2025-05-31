@@ -41,9 +41,8 @@ const Resume = () => {
       company: 'Nestingale',
       period: 'Summer 2025',
       description: [
-        'Worked with company\'s CMS to create pages for the website',
-        'Made improvements to the website\'s design and user experience',
-        'Optimized product ingestion workflows by validating data, mapping attributes, and ensuring accurate product listings through MongoDB and automated n8n pipelines.'
+        'Built and updated web pages using the company’s CMS, ensuring consistency with brand guidelines and SEO best practices',
+        'Enhanced website design and optimized user experience by improving layout, navigation, and accessibility across devices',
       ],
     },
     {
@@ -59,7 +58,7 @@ const Resume = () => {
     {
       role: 'Frontend Developer',
       company: 'WebRising',
-      period: '2021-2023',
+      period: '2021 - 2023',
       description: [
         'Co-founder of non-profit web development organization',
         'Developed full-stack websites for local businesses free of charge',
@@ -85,7 +84,7 @@ const Resume = () => {
         'AP Computer Science A',
         'AP Computer Science Principles',
         'AP Calculus BC',
-        'GPA: 97.5/100',
+        'GPA: 97.8/100',
       ],
     },
   ];

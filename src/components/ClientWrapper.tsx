@@ -2,7 +2,7 @@
 
 import Header from './Header';
 import Hero from './Hero';
-import Timeline from './Timeline';
+import About from './About';
 import Skills from './Skills';
 import Resume from './Resume';
 
@@ -11,7 +11,7 @@ export default function ClientWrapper() {
     <>
       <Header />
       <Hero />
-      <Timeline />
+      <About />
       <Skills />
       <Resume />
     </>

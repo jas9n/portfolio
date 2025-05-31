@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 const Header = () => {
   const navItems = [
     { name: 'About', href: '#about' },
-    { name: 'Timeline', href: '#timeline' },
     { name: 'Skills', href: '#skills' },
     { name: 'Resume', href: '#resume' },
   ];
@@ -22,7 +21,7 @@ const Header = () => {
             {navItems.map((item) => (
               <motion.li
                 key={item.name}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.0 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link

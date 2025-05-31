@@ -58,14 +58,7 @@ const Footer = () => {
           <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm">
             <span>Made with</span>
             <HeartIcon className="w-5 h-5 mx-1 text-red-500 animate-pulse" />
-            <span>by</span>
-            <Link 
-              href="/"
-              className="ml-1 text-blue-600 dark:text-blue-400 hover:underline"
-            >
-              Jason Chen
-            </Link>
-            <span className="ml-1">using Next.js & Tailwind CSS</span>
+            <span>using Next.js & Tailwind CSS</span>
           </div>
         </div>
       </div>
