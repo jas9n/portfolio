@@ -68,7 +68,7 @@ const Resume = () => {
 
   const education = [
     {
-      role: 'Bachelor of Computer Science',
+      role: 'Bachelor of Science',
       company: 'Stony Brook University',
       period: '2023 - 2027',
       description: [

@@ -19,9 +19,14 @@ const About = () => {
         transition={{ duration: 0.8 }}
         className="container mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <h2 className="text-lg text-center sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-6 sm:mb-8">
-            Full Stack Developer | Problem Solver | Lifelong Learner
-          </h2>
+        <div className="text-lg text-center sm:text-xl md:text-2xl mb-6 sm:mb-8 font-bold">
+            <span className='text-gray-400 mr-2'>I am a</span>
+            <span className='text-blue-600 dark:text-blue-400'>Full Stack Developer</span>
+            <span className='text-gray-400 mr-2'>, a</span>
+            <span className='text-blue-600 dark:text-blue-400'>Problem Solver</span>
+            <span className='text-gray-400 mr-2'>, and a</span>
+            <span className='text-blue-600 dark:text-blue-400'>Lifelong Learner</span>
+        </div>
         <div className="max-w-2xl mx-auto text-sm sm:text-md md:text-lg text-gray-700 dark:text-gray-300 space-y-4 text-center">
           <p>
             I'm an aspiring software engineer with a passion for building intuitive and impactful digital experiences. Whether I'm coding a new feature, debugging a tricky issue, or exploring the latest in web technologies, I enjoy solving problems and turning ideas into reality.
