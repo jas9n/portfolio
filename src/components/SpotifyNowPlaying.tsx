@@ -128,7 +128,7 @@ const SpotifyNowPlaying = memo(({ isVisible }: Props) => {
         animate={{ opacity: 1 }}
         className="inline-flex items-center"
       >
-        <span className="text-blue-500 text-xl sm:text-2xl md:text-3xl lg:text-4xl">nothing right now</span>
+        <span className="text-emerald-500 text-xl sm:text-2xl md:text-3xl lg:text-4xl">nothing right now</span>
       </motion.div>
     );
   }
@@ -154,13 +154,13 @@ const SpotifyNowPlaying = memo(({ isVisible }: Props) => {
           href={currentSong.songUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 hover:underline font-bold text-base sm:text-lg md:text-xl lg:text-2xl truncate w-full"
+          className="text-emerald-500 hover:underline font-bold text-base sm:text-lg md:text-xl lg:text-2xl truncate w-full"
           title={currentSong.title}
         >
           {currentSong.title}
         </a>
         <span 
-          className="text-white text-sm sm:text-base md:text-lg lg:text-xl truncate w-full"
+          className="text-gray-600 text-sm sm:text-base md:text-lg lg:text-xl truncate w-full"
           title={`by ${currentSong.artist}`}
         >
           by {currentSong.artist}
@@ -176,7 +176,7 @@ const SpotifyNowPlaying = memo(({ isVisible }: Props) => {
             <motion.span
               key={i}
               variants={beatVariants}
-              className="w-1 sm:w-1.5 bg-blue-500 rounded-full"
+              className="w-1 sm:w-1.5 bg-emerald-500 rounded-full"
               style={{ height: 4 }}
             />
           ))}

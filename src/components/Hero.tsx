@@ -12,7 +12,7 @@ const Hero = () => {
       id: 1,
       content: (
         <div className="h-8 sm:h-20 md:h-auto flex items-center">
-          <span className="text-blue-500 tracking-tight text-6xl sm:text-4xl md:text-5xl lg:text-6xl">Jason Chen</span>
+          <span className="text-emerald-500 tracking-tight text-6xl sm:text-4xl md:text-5xl lg:text-6xl">Jason Chen</span>
         </div>
       )
     },
@@ -20,8 +20,8 @@ const Hero = () => {
       id: 2,
       content: (
         <div className="h-8 sm:h-20 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-white tracking-tight">a</span>
-          <span className="text-blue-500 tracking-tight">Software Engineer 🧑🏻‍💻</span>
+          <span className="text-gray-900 tracking-tight">a</span>
+          <span className="text-emerald-500 tracking-tight">Software Engineer 🧑🏻‍💻</span>
         </div>
       )
     },
@@ -29,8 +29,8 @@ const Hero = () => {
       id: 3,
       content: (
         <div className="h-8 sm:h-20 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-white tracking-tight">from</span>
-          <span className="text-blue-500 tracking-tight">Brooklyn, NY</span>
+          <span className="text-gray-900 tracking-tight">from</span>
+          <span className="text-emerald-500 tracking-tight">Brooklyn, NY</span>
           <span className="text-white tracking-tight">📍</span>
         </div>
       )
@@ -40,7 +40,7 @@ const Hero = () => {
       content: (
         <div className="h-8 sm:h-20 md:h-auto flex items-center">
           <div className="overflow-visible flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-            <span className="text-white tracking-tight whitespace-nowrap">listening to</span>
+            <span className="text-gray-900 tracking-tight whitespace-nowrap">listening to</span>
             <SpotifyNowPlaying isVisible={currentSlide === 3} />
           </div>
         </div>
@@ -61,7 +61,7 @@ const Hero = () => {
       return (
         <div key={slide.id} className="h-8 sm:h-20 md:h-auto flex items-center">
           <div className="flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-            <span className="text-white tracking-tight whitespace-nowrap">listening to</span>
+            <span className="text-gray-900 tracking-tight whitespace-nowrap">listening to</span>
             <SpotifyNowPlaying isVisible={currentSlide === index} />
           </div>
         </div>

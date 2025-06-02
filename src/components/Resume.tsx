@@ -15,14 +15,14 @@ const ResumeSection = ({ title, items }: { title: string; items: Array<{ role: s
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+            className="bg-gray-100 p-6 rounded-lg shadow-lg"
           >
             <h4 className="text-xl font-semibold mb-2">{item.role}</h4>
             <div className="flex justify-between items-center mb-4">
-              <span className="text-blue-600 dark:text-blue-400">{item.company}</span>
-              <span className="text-gray-600 dark:text-gray-400">{item.period}</span>
+              <span className="text-emerald-500">{item.company}</span>
+              <span className="text-gray-600">{item.period}</span>
             </div>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-gray-900">
               {item.description.map((desc, i) => (
                 <li key={i}>{desc}</li>
               ))}
@@ -90,13 +90,13 @@ const Resume = () => {
   ];
 
   return (
-    <section id="resume" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="resume" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl font-bold">Resume</h2>
           <a
             href="/Resume.pdf"
-            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors"
             download
           >
             <DocumentArrowDownIcon className="w-5 h-5" />

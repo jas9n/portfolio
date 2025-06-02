@@ -66,7 +66,7 @@ const Skills = () => {
       title: 'Frontend',
       skills: [
         { name: 'React', icon: 'react.png' },
-        // { name: 'Next.js', icon: 'nextjs.svg' },
+        { name: 'Next.js', icon: 'nextjs.svg' },
         { name: 'TypeScript', icon: 'typescript.png' },
         { name: 'Tailwind CSS', icon: 'tailwind.png' },
         { name: 'GSAP', icon: 'gsap.png' },
