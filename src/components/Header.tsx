@@ -3,10 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useTheme } from 'next-themes';
-// import { LightBulbIcon } from '@heroicons/react/24/outline';
-// import { LightBulbIcon as LightBulbSolid } from '@heroicons/react/24/solid';
-import { useEffect, useState } from 'react';
 
 const socialLinks = [
   {
@@ -39,13 +35,6 @@ const socialLinks = [
 ];
 
 const Header = () => {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <header className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50">
       <nav className="container mx-auto px-6 py-4">
@@ -66,7 +55,7 @@ const Header = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-blue-500 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 title={social.name}
@@ -74,7 +63,6 @@ const Header = () => {
                 {social.icon}
               </motion.a>
             ))}
-            
           </div>
         </div>
       </nav>
