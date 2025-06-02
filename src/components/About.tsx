@@ -43,7 +43,7 @@ const About = () => {
             className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8"
           >
             <a
-              href="#contact"
+              href="mailto:jasonc3805@gmail.com"
               className="bg-blue-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
             >
               Get in Touch

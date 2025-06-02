@@ -50,9 +50,8 @@ const Resume = () => {
       company: 'JagTrim International',
       period: 'Summer 2024',
       description: [
-        'Led the creative direction of the company\'s website',
-        'Designed and built a website featuring engaging graphics',
-        'Implemented a streamlined email reception system using AWS',
+        'Developed a visually dynamic website with interactive graphics and smooth animations to enhance user engagement',
+        'Built a reliable and scalable email reception pipeline using Amazon AWS services, optimizing communication workflows',
       ],
     },
     {
@@ -61,7 +60,8 @@ const Resume = () => {
       period: '2021 - 2023',
       description: [
         'Co-founder of non-profit web development organization',
-        'Developed full-stack websites for local businesses free of charge',
+        'A volunteer-based organization that creates fullstack websites for local businesses at no cost, helping them maintain an online presence and adapt during the COVID-19 pandemic',
+        'Focused on supporting community growth through accessible digital solutions',
       ],
     },
   ];
@@ -95,7 +95,7 @@ const Resume = () => {
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl font-bold">Resume</h2>
           <a
-            href="/path-to-your-cv.pdf"
+            href="/Resume.pdf"
             className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
             download
           >

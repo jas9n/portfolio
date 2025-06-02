@@ -6,8 +6,8 @@ import SpotifyNowPlaying from './SpotifyNowPlaying';
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center py-12 sm:py-16 md:py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 md:pt-16">
+    <section className="min-h-screen flex items-center justify-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ const Hero = () => {
             className="mt-8"
           >
             <div className="text-sm text-gray-500 space-x-1">
-              <span className=''>📍 Located in</span>
+              <span className=''>📍 Working out of</span>
               <span className="text-blue-600 dark:text-blue-400">New York, NY 🗽</span>
             </div>
           </motion.div>
