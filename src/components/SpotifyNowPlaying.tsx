@@ -170,7 +170,7 @@ const SpotifyNowPlaying = memo(({ isVisible }: Props) => {
         <motion.div
           variants={beatsVariants}
           animate="playing"
-          className="flex items-center space-x-0.5 sm:space-x-1 h-12 sm:h-14 md:h-16 flex-shrink-0"
+          className="hidden sm:flex items-center space-x-0.5 sm:space-x-1 h-12 sm:h-14 md:h-16 flex-shrink-0"
         >
           {[...Array(3)].map((_, i) => (
             <motion.span
