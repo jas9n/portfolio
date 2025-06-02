@@ -36,8 +36,8 @@ const socialLinks = [
 
 const Header = () => {
   return (
-    <header className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50">
-      <nav className="container mx-auto px-6 py-4">
+    <header className="absolute top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      <nav className="container mx-auto px-10 py-8">
         <div className="flex items-center justify-between">
           <Link href="/" className="relative w-12 h-12">
             <Image
