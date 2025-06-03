@@ -79,8 +79,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 const Projects = () => {
   return (
-    <section id="projects">
-      <div className="container mx-auto px-10 lg:px-36">
+    <section id="projects" className="py-20">
+      <div className="container mx-auto px-6">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-900">My Projects</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {projects.map((project) => (

@@ -161,7 +161,7 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center">
-      <div className="w-full px-10 py-8 lg:px-36">
+      <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-start md:items-baseline md:space-x-4">
           <div className="text-6xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-0 whitespace-nowrap tracking-tight">
             Hello! I am

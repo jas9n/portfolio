@@ -120,7 +120,7 @@ const GitHubActivity = () => {
       >
         <motion.h2 
           variants={itemVariants}
-          className="text-3xl font-bold lg:mx-10 mb-12"
+          className="text-3xl font-bold mb-12"
         >
           Activity
         </motion.h2>

@@ -37,11 +37,11 @@ const socialLinks = [
 const Header = () => {
   return (
     <header className="absolute top-0 w-full bg-gray-50 backdrop-blur-sm">
-      <nav className="container mx-auto px-10 py-8">
+      <nav className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between">
           <Link href="/" className="relative w-12 h-12">
             <Image
-              src="/me.jpeg"
+              src="/me.jpg"
               alt="Profile"
               fill
               className="rounded-full object-cover"

@@ -110,12 +110,12 @@ const Skills = () => {
       >
         <motion.h2 
           variants={categoryVariants}
-          className="text-3xl font-bold lg:mx-10 mb-12"
+          className="text-3xl font-bold mb-12"
         >
           Stack
         </motion.h2>
         
-        <div className="lg:mx-10 space-y-12">
+        <div className="space-y-12">
           {categories.map((category, index) => (
             <motion.div 
               key={category.title} 
