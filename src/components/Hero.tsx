@@ -52,7 +52,7 @@ const Hero = () => {
       id: 1,
       content: (
         <div className="h-8 sm:h-20 md:h-auto flex items-center">
-          <span className="text-emerald-500 tracking-tight text-5xl sm:text-6xl">Jason Chen</span>
+          <span className="text-emerald-500 tracking-tight text-5xl lg:text-6xl">Jason Chen</span>
         </div>
       )
     },
@@ -159,6 +159,26 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const projectsSection = document.getElementById('projects');
+    const header = document.querySelector('header');
+    
+    if (projectsSection) {
+      // Add a small delay to ensure all content is properly laid out
+      requestAnimationFrame(() => {
+        const headerHeight = header?.offsetHeight || 0;
+        const offset = -128; // Additional offset to ensure proper positioning
+        const projectsPosition = projectsSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - offset;
+        
+        window.scrollTo({
+          top: projectsPosition,
+          behavior: 'smooth'
+        });
+      });
+    }
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto px-6">
@@ -181,24 +201,25 @@ const Hero = () => {
           </div>
         </div>
         <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="flex justify-start items-center gap-4 mt-8"
-      >
-        <a
-          href="/projects"
-          className="bg-emerald-500 text-white w-full sm:w-auto px-6 sm:px-8 py-3 rounded-lg hover:bg-emerald-600 transition-colors text-center text-sm sm:text-base font-medium"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="flex justify-start items-center gap-4 mt-8"
         >
-          View My Work
-        </a>
-        <Link
-          href="/contact"
-          className="border border-emerald-500 text-emerald-500 w-full sm:w-auto px-6 sm:px-8 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-medium"
-        >
-          Get in Touch
-        </Link>
-      </motion.div>
+          <a
+            href="#projects"
+            onClick={scrollToProjects}
+            className="bg-emerald-500 text-white w-full sm:w-auto px-6 sm:px-8 py-3 rounded-lg hover:bg-emerald-600 transition-colors text-center text-sm sm:text-base font-medium"
+          >
+            View My Work
+          </a>
+          <Link
+            href="/contact"
+            className="border border-emerald-500 text-emerald-500 w-full sm:w-auto px-6 sm:px-8 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-medium"
+          >
+            Get in Touch
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

@@ -103,7 +103,7 @@ const SpotifyNowPlaying = memo(({ isVisible }: Props) => {
         className="inline-flex items-center space-x-2 text-gray-400"
       >
         <motion.svg 
-          className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" 
+          className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10" 
           viewBox="0 0 168 168"
           animate={{ rotate: 360 }}
           transition={{
@@ -129,7 +129,7 @@ const SpotifyNowPlaying = memo(({ isVisible }: Props) => {
         className="inline-flex items-center text-emerald-500"
       >
         <svg 
-          className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" 
+          className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10" 
           viewBox="0 0 168 168"
         >
           <path
@@ -154,7 +154,7 @@ const SpotifyNowPlaying = memo(({ isVisible }: Props) => {
           src={currentSong.albumImageUrl}
           alt={`${currentSong.title} album art`}
           fill
-          className="object-cover rounded-lg"
+          className="object-cover rounded-md"
         />
       </div>
       <div className="flex flex-col items-start max-w-[150px] sm:max-w-[225px] md:max-w-[275px] lg:max-w-[350px]">

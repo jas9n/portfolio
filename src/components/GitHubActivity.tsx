@@ -127,10 +127,10 @@ const GitHubActivity = () => {
 
         <div className="max-w-6xl mx-auto space-y-16">
           {/* Contribution Graph */}
-          <motion.div variants={itemVariants} className="w-full overflow-x-auto">
+          <motion.div variants={itemVariants} className="w-full overflow-x-auto shadow-md">
             {loading ? (
               <div className="animate-pulse">
-                <div className="h-32 bg-gray-200 rounded-lg" />
+                <div className="h-32 bg-gray-200 rounded-lg shadow-md" />
               </div>
             ) : contributionSvg ? (
               <div 
@@ -138,7 +138,7 @@ const GitHubActivity = () => {
                 dangerouslySetInnerHTML={{ __html: contributionSvg }} 
               />
             ) : contributionData ? (
-              <div className="text-center py-8 bg-white rounded-lg shadow-md">
+              <div className="text-center py-8 bg-white rounded-lg">
                 <p className="text-2xl font-semibold text-emerald-500">
                   {contributionData.totalContributions}
                 </p>
