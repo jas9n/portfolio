@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const username = 'jas9n';
-    const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+    const token = process.env.GITHUB_TOKEN;
 
     if (!token) {
       console.error('GitHub token is not set');
