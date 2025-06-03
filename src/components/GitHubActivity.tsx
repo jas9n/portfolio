@@ -128,7 +128,6 @@ const GitHubActivity = () => {
         <div className="max-w-6xl mx-auto space-y-16">
           {/* Contribution Graph */}
           <motion.div variants={itemVariants} className="w-full overflow-x-auto">
-            <h3 className="text-xl font-semibold mb-6">Contribution Graph</h3>
             {loading ? (
               <div className="animate-pulse">
                 <div className="h-32 bg-gray-200 rounded-lg" />
@@ -140,7 +139,7 @@ const GitHubActivity = () => {
               />
             ) : contributionData ? (
               <div className="text-center py-8 bg-white rounded-lg shadow-md">
-                <p className="text-2xl font-semibold text-emerald-600">
+                <p className="text-2xl font-semibold text-emerald-500">
                   {contributionData.totalContributions}
                 </p>
                 <p className="text-gray-600">
@@ -156,7 +155,6 @@ const GitHubActivity = () => {
 
           {/* Pinned Repositories */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-xl font-semibold mb-6">Featured Projects</h3>
             {loading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, i) => (
@@ -177,13 +175,13 @@ const GitHubActivity = () => {
                     className="block"
                   >
                     <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow h-full">
-                      <h4 className="font-medium text-emerald-600 mb-2">
+                      <h4 className="font-medium text-emerald-500 mb-2">
                         {repo.name}
                       </h4>
                       <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                         {repo.description}
                       </p>
-                      <div className="flex items-center justify-between text-sm text-gray-500">
+                      <div className="flex items-center justify-between text-sm text-gray-600">
                         <div className="flex items-center space-x-4">
                           {repo.language && (
                             <span>{repo.language}</span>
@@ -211,7 +209,6 @@ const GitHubActivity = () => {
 
           {/* Recent Commits */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-xl font-semibold mb-6">Recent Activity</h3>
             {loading ? (
               <div className="animate-pulse space-y-4">
                 {[...Array(3)].map((_, i) => (
@@ -232,17 +229,17 @@ const GitHubActivity = () => {
                     >
                       <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                         <div className="flex justify-between items-start mb-2">
-                          <h4 className="font-medium text-emerald-600 truncate flex-1">
+                          <h4 className="font-medium text-emerald-500 truncate flex-1">
                             {commit.repo}
                           </h4>
-                          <span className="text-sm text-gray-500 ml-4">
+                          <span className="text-sm text-gray-600 ml-4">
                             {commit.date}
                           </span>
                         </div>
-                        <p className="text-gray-700 break-words">
+                        <p className="text-gray-600 break-words">
                           {commit.message}
                         </p>
-                        <div className="mt-2 text-sm text-gray-500">
+                        <div className="mt-2 text-sm text-gray-600">
                           {commit.sha.substring(0, 7)}
                         </div>
                       </div>
