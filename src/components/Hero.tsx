@@ -188,13 +188,13 @@ const Hero = () => {
       >
         <a
           href="mailto:jasonc3805@gmail.com"
-          className="bg-emerald-500 text-white w-full sm:w-auto px-8 py-3 rounded-lg hover:bg-emerald-600 transition-colors text-center text-sm sm:text-base font-medium"
+          className="bg-emerald-500 text-white w-full sm:w-auto px-6 sm:px-8 py-3 rounded-lg hover:bg-emerald-600 transition-colors text-center text-sm sm:text-base font-medium"
         >
           View My Work
         </a>
         <Link
           href="/projects"
-          className="border border-emerald-500 text-emerald-500 w-full sm:w-auto px-8 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-medium"
+          className="border border-emerald-500 text-emerald-500 w-full sm:w-auto px-6 sm:px-8 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-medium"
         >
           Get in Touch
         </Link>
