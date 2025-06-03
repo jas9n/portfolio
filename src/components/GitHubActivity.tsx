@@ -122,7 +122,7 @@ const GitHubActivity = () => {
           variants={itemVariants}
           className="text-3xl font-bold lg:mx-10 mb-12"
         >
-          GitHub Activity
+          Activity
         </motion.h2>
 
         <div className="max-w-6xl mx-auto space-y-16">
