@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
-const client_id = '76377f27b4b54be08fbde22f450e13e0';
-const client_secret = '66e19820682d45f49b6b0444b8221005';
-const refresh_token = 'AQC3X8YtG_5Yj425qai9HIdSwUI5U0Wf9nCzHi1OAYX16of5tjLJsBfYQbeE6c0J0M7xy7X9D1MZFyhLrWr2tJMMDRCWBOiKAjeA75GZXyYXaGTeeaf188DZfznZzwUtCU8';
+const client_id = process.env.SPOTIFY_CLIENT_ID;
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;

@@ -77,8 +77,8 @@ const Resume = () => {
       ],
     },
     {
-      role: 'High School',
-      company: 'Staten Island Technical High School',
+      role: 'High School Diploma',
+      company: 'Staten Island Technical HS',
       period: '2019 - 2023',
       description: [
         'AP Computer Science A',
