@@ -7,20 +7,15 @@ import Header from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Jason Chen - Portfolio",
-  description: "Full Stack Developer from Brooklyn, NY. Passionate about turning ideas into reality through code, fashion, and frontend development.",
+  title: "Portfolio",
+  description: "Professional portfolio showcasing my work and skills",
   icons: {
     icon: [
       {
-        url: '/favicon.svg',
-        type: 'image/svg+xml',
+        url: '/favicon.ico',
+        href: '/favicon.ico',
       },
     ],
-    shortcut: '/favicon.svg',
-    apple: {
-      url: '/favicon.svg',
-      type: 'image/svg+xml',
-    },
   },
 };
 
