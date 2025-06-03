@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import SpotifyNowPlaying from './SpotifyNowPlaying';
 import Link from 'next/link';
+import { EnvelopeIcon } from '@heroicons/react/24/outline';
 
 const TypewriterText = ({ text, isVisible }: { text: string; isVisible: boolean }) => {
   // const writingText = "writing";
@@ -204,19 +205,13 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="flex justify-start items-center gap-4 mt-8"
+          className="flex justify-start items-center mt-8"
         >
-          <a
-            href="#projects"
-            onClick={scrollToProjects}
-            className="bg-emerald-500 text-white w-full sm:w-auto px-6 sm:px-8 py-3 rounded-lg hover:bg-emerald-600 transition-colors text-center text-sm sm:text-base font-medium"
-          >
-            View My Work
-          </a>
           <Link
             href="/contact"
-            className="border border-emerald-500 text-emerald-500 w-full sm:w-auto px-6 sm:px-8 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-medium"
+            className="border border-emerald-500 text-emerald-500 w-auto px-6 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-semibold inline-flex items-center justify-center gap-2"
           >
+            <EnvelopeIcon className="w-5 h-5" />
             Get in Touch
           </Link>
         </motion.div>
