@@ -34,6 +34,14 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/jas9n/jtinternational',
   },
   {
+    title: 'Scroll Parallax',
+    description: 'A simple scroll parallax example using GSAP.',
+    technologies: ['JavaScript', 'GSAP'],
+    image: '/parallax.png',
+    liveUrl: 'https://icelandparallax.netlify.app/',
+    githubUrl: 'https://github.com/jas9n/parallax-example',
+  },
+  {
     title: 'Staten Island Tech Course Catalog',
     description: 'An interactive course catalog helping students explore and learn about available courses.',
     technologies: ['Vue', 'JavaScript', 'Tailwind CSS'],
@@ -48,6 +56,22 @@ const projects: Project[] = [
     image: '/selection.png',
     liveUrl: 'https://courseselection.siths.dev',
     githubUrl: 'https://github.com/sitechtimes/course-selection-frontend-v2',
+  },
+  {
+    title: 'Tic Tac Toe',
+    description: 'A simple Tic Tac Toe game with a modern UI.',
+    technologies: ['JavaScript', 'React'],
+    image: '/tictactoe.png',
+    liveUrl: 'https://tictactoe-vanilla.netlify.app/',
+    githubUrl: 'https://github.com/jas9n/gsap',
+  },
+  {
+    title: 'Clock Example',
+    description: 'A simple clock example using vanilla JavaScript and CSS.',
+    technologies: ['JavaScript', 'CSS'],
+    image: '/clock.png',
+    liveUrl: 'https://watch-clock-example.vercel.app/',
+    githubUrl: 'https://github.com/jas9n/watch',
   },
   // Add more projects as needed
 ];
