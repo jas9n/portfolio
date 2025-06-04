@@ -96,6 +96,13 @@ export async function GET() {
       return NextResponse.json({ 
         isPlaying: false,
         error: 'No refresh token configured'
+      }, {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'Surrogate-Control': 'no-store'
+        }
       });
     }
 
@@ -110,6 +117,13 @@ export async function GET() {
         artist: currentlyPlaying.item.artists.map((_artist: any) => _artist.name).join(', '),
         albumImageUrl: currentlyPlaying.item.album.images[0].url,
         songUrl: currentlyPlaying.item.external_urls.spotify,
+      }, {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'Surrogate-Control': 'no-store'
+        }
       });
     }
 
@@ -124,15 +138,36 @@ export async function GET() {
         albumImageUrl: lastPlayed.track.album.images[0].url,
         songUrl: lastPlayed.track.external_urls.spotify,
         lastPlayed: true,
+      }, {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'Surrogate-Control': 'no-store'
+        }
       });
     }
 
-    return NextResponse.json({ isPlaying: false });
+    return NextResponse.json({ isPlaying: false }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'Surrogate-Control': 'no-store'
+      }
+    });
   } catch (error) {
     console.error('Error in GET route:', error);
     return NextResponse.json({ 
       isPlaying: false,
       error: error instanceof Error ? error.message : 'Unknown error'
+    }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'Surrogate-Control': 'no-store'
+      }
     });
   }
 } 

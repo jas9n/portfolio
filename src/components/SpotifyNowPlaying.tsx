@@ -25,11 +25,15 @@ const SpotifyNowPlaying = memo(({ isVisible }: Props) => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch('/api/spotify', {
+      // Add timestamp to bust cache
+      const timestamp = Date.now();
+      const res = await fetch(`/api/spotify?t=${timestamp}`, {
         // Prevent caching to ensure fresh data
         cache: 'no-store',
         headers: {
-          'Cache-Control': 'no-cache'
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
         }
       });
       const newData = await res.json();
