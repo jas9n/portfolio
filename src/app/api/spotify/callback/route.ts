@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 const client_id = '76377f27b4b54be08fbde22f450e13e0';
 const client_secret = '66e19820682d45f49b6b0444b8221005';
-const redirect_uri = 'http://127.0.0.1:3000/api/spotify/callback';
+const redirect_uri = 'https://jas9n.vercel.app/api/spotify/callback';
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
