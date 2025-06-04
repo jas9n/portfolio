@@ -27,7 +27,7 @@ const projects: Project[] = [
   },
   {
     title: 'JagTrim International',
-    description: 'A modern portfolio website for a clothing button manufacturer with dynamic animations.',
+    description: 'A modern portfolio website for a clothing button company with dynamic animations.',
     technologies: ['Vue', 'JavaScript', 'Tailwind CSS', 'GSAP'],
     image: '/jagtrim.png',
     liveUrl: 'https://jagtrim.com',

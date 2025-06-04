@@ -36,14 +36,15 @@ const socialLinks = [
 
 const Header = () => {
   return (
-    <header className="absolute top-0 w-full bg-gray-50 backdrop-blur-sm">
+    <header className="absolute top-0 w-full">
       <nav className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between">
           <Link href="/" className="relative w-12 h-12">
             <Image
               src="/me.jpg"
               alt="Profile"
-              fill
+              width={48}
+              height={48}
               className="rounded-full object-cover"
               priority
             />

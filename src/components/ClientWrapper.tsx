@@ -11,8 +11,8 @@ export default function ClientWrapper() {
     <>
       <Hero />
       <GitHubActivity />
-      <Skills />
       <Projects />
+      <Skills />
       <Resume />
     </>
   );

@@ -208,7 +208,8 @@ const Hero = () => {
           className="flex justify-start items-center mt-8"
         >
           <Link
-            href="/contact"
+            href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=jasonc3805@gmail.com"
+            target="_blank"
             className="border border-emerald-500 text-emerald-500 w-auto px-6 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-semibold inline-flex items-center justify-center gap-2"
           >
             <EnvelopeIcon className="w-5 h-5" />
