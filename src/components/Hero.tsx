@@ -57,18 +57,17 @@ const Hero = () => {
         </div>
       )
     },
-  
+    // {
+    //   id: 2,
+    //   content: (
+    //     <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
+    //       <span className="text-gray-900 tracking-tight">from</span>
+    //       <span className="text-emerald-500 tracking-tight">Brooklyn, NY</span>
+    //     </div>
+    //   )
+    // },
     {
       id: 2,
-      content: (
-        <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-gray-900 tracking-tight">from</span>
-          <span className="text-emerald-500 tracking-tight">Brooklyn, NY</span>
-        </div>
-      )
-    },
-    {
-      id: 3,
       content: (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
           <span className="text-gray-900 tracking-tight">a</span>
@@ -77,7 +76,7 @@ const Hero = () => {
       )
     },
     {
-      id: 4,
+      id: 3,
       content: (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
           <span className="text-gray-900 tracking-tight">writing</span>
@@ -86,7 +85,7 @@ const Hero = () => {
       )
     },
     {
-      id: 5,
+      id: 4,
       content: (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
           <span className="text-gray-900 tracking-tight">into</span>
@@ -97,7 +96,7 @@ const Hero = () => {
       )
     },
     {
-      id: 6,
+      id: 5,
       content: (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
           <span className="text-gray-900 tracking-tight">turning</span>
@@ -108,7 +107,7 @@ const Hero = () => {
       )
     },
     {
-      id: 7,
+      id: 6,
       content: (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
           <span className="text-emerald-500 tracking-tight">learning</span>
@@ -119,7 +118,7 @@ const Hero = () => {
     },
     
     {
-      id: 8,
+      id: 7,
       content: (
         <div className="h-8 md:h-auto flex items-center">
           <div className="flex items-center space-x-2 md:space-x-3 lg:space-x-4">
@@ -129,26 +128,26 @@ const Hero = () => {
         </div>
       )
     },
-    {
-      id: 9,
-      content: (
-        <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-gray-900 tracking-tight">a</span>
-          <span className="text-emerald-500 tracking-tight">movie</span>
-          <span className="text-emerald-500 tracking-tight">enthusiast</span>
-        </div>
-      )
-    },
-    {
-      id: 10,
-      content: (
-        <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-emerald-500 tracking-tight">debugging</span>
-          <span className="text-gray-900 tracking-tight">my</span>
-          <span className="text-emerald-500 tracking-tight">life</span>
-        </div>
-      )
-    },
+    // {
+    //   id: 9,
+    //   content: (
+    //     <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
+    //       <span className="text-gray-900 tracking-tight">a</span>
+    //       <span className="text-emerald-500 tracking-tight">movie</span>
+    //       <span className="text-emerald-500 tracking-tight">enthusiast</span>
+    //     </div>
+    //   )
+    // },
+    // {
+    //   id: 10,
+    //   content: (
+    //     <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
+    //       <span className="text-emerald-500 tracking-tight">debugging</span>
+    //       <span className="text-gray-900 tracking-tight">my</span>
+    //       <span className="text-emerald-500 tracking-tight">life</span>
+    //     </div>
+    //   )
+    // },
   
   ];
 
