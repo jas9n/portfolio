@@ -80,7 +80,7 @@ const Hero = () => {
       content: (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
           <span className="text-gray-900 tracking-tight">writing</span>
-          <TypewriterText text="<code/>" isVisible={currentSlide === 3} />
+          <TypewriterText text="<code/>" isVisible={currentSlide === 2} />
         </div>
       )
     },
@@ -120,10 +120,12 @@ const Hero = () => {
     {
       id: 7,
       content: (
-        <div className="h-8 md:h-auto flex items-center">
+        <div className="h-8 md:h-auto flex items-center relative">
           <div className="flex items-center space-x-2 md:space-x-3 lg:space-x-4">
             <span className="text-gray-900 tracking-tight whitespace-nowrap">listening to</span>
-            <SpotifyNowPlaying isVisible={currentSlide === 7} />
+            <div className='absolute left-full top-1/2 -translate-y-1/2'>
+              <SpotifyNowPlaying isVisible={currentSlide === 6} />
+            </div>
           </div>
         </div>
       )
