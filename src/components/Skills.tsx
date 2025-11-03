@@ -63,38 +63,48 @@ const Skills = () => {
 
   const categories = [
     {
-      title: 'Frontend',
+      title: 'Programming Languages',
+      skills: [
+        { name: 'Python', icon: 'python.svg' },
+        { name: 'Java', icon: 'java.png' },
+        { name: 'JavaScript', icon: 'javascript.png' },
+        { name: 'TypeScript', icon: 'typescript.png' },
+        { name: 'C', icon: 'c.png' },
+        { name: 'C++', icon: 'c++.svg' },
+        { name: 'OCaml', icon: 'ocaml.png' }, 
+        { name: 'R', icon: 'r.png' },
+      ],
+    },
+    {
+      title: 'Front-end Development',
       skills: [
         { name: 'React', icon: 'react.png' },
         { name: 'Next.js', icon: 'nextjs.svg' },
+        { name: 'JavaScript', icon: 'javascript.png' },
         { name: 'TypeScript', icon: 'typescript.png' },
+        { name: 'CSS', icon: 'css.png' }, 
         { name: 'Tailwind CSS', icon: 'tailwind.png' },
-        { name: 'GSAP', icon: 'gsap.png' },
       ],
     },
     {
-      title: 'Backend',
+      title: 'Back-end Development',
       skills: [
-        { name: 'Node.js', icon: 'nodejs.png' },
-        { name: 'Python', icon: 'python.svg' },
         { name: 'Django', icon: 'django.svg' },
+        { name: 'Node.js', icon: 'nodejs.png' },
+        { name: 'Express.js', icon: 'express.png' }, 
+        { name: 'PostgreSQL', icon: 'postgres.png' },
+        { name: 'MongoDB', icon: 'mongodb.png' }, 
       ],
     },
     {
-      title: 'Tools & Others',
+      title: 'Developer Tools',
       skills: [
         { name: 'Git', icon: 'git.svg' },
+        { name: 'Github', icon: 'github.png' }, 
+        { name: 'npm', icon: 'npm.png' }, 
         { name: 'AWS', icon: 'aws.svg' },
         { name: 'Figma', icon: 'figma.svg' },
-      ],
-    },
-    {
-      title: 'Languages',
-      skills: [
-        { name: 'JavaScript', icon: 'javascript.png' },
-        { name: 'Python', icon: 'python.svg' },
-        { name: 'Java', icon: 'java.png' },
-        { name: 'C', icon: 'c.png' },
+        { name: 'Agile/Scrum', icon: 'agile.png' }, 
       ],
     },
   ];

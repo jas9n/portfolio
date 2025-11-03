@@ -37,31 +37,39 @@ const ResumeSection = ({ title, items }: { title: string; items: Array<{ role: s
 const Resume = () => {
   const experience = [
     {
-      role: 'Full Stack Developer Intern',
+      role: 'Fullstack Developer Intern',
       company: 'Nestingale',
-      period: 'Summer 2025',
+      period: 'May - Aug 2025',
       description: [
-        'Built and updated web pages using the company’s CMS, ensuring consistency with brand guidelines and SEO best practices',
-        'Enhanced website design and optimized user experience by improving layout, navigation, and accessibility across devices',
-      ],
-    },
-    {
-      role: 'Frontend Developer Intern',
-      company: 'JagTrim International',
-      period: 'Summer 2024',
-      description: [
-        'Developed a visually dynamic website with interactive graphics and smooth animations to enhance user engagement',
-        'Built a reliable and scalable email reception pipeline using Amazon AWS services, optimizing communication workflows',
+        'Developed and maintained internal fullstack tools to streamline team workflows related to supplier data configuration and management, reducing manual input and accelerating supplier onboarding.',
+        'Designed and implemented user-friendly CMS pages and frontend features, improving site usability and supplier data visibility by optimizing layouts, navigation flows, and overall user experience.',
+        'Participated in daily stand-up meetings and collaborated with multiple development teams in Agile environments to deliver feature enhancements and meet sprint goals.',
       ],
     },
     {
       role: 'Frontend Developer',
+      company: 'Jag International Trim',
+      period: 'Jun - Aug 2024',
+      description: [
+        'Developed a visually dynamic website with interactive graphics and smooth animations to enhance user experience.',
+        'Built a reliable and scalable email reception pipeline using AWS services, optimizing communication workflows.',
+      ],
+    },
+    {
+      role: 'Co-founder, Lead Frontend Developer',
       company: 'WebRising',
       period: '2021 - 2023',
       description: [
-        'Co-founder of non-profit web development organization',
-        'A volunteer-based organization that creates fullstack websites for local businesses at no cost, helping them maintain an online presence and adapt during the COVID-19 pandemic',
-        'Focused on supporting community growth through accessible digital solutions',
+        'A collaborative volunteer-based web development organization that creates fullstack websites for local businesses at no cost, helping them maintain an online presence and adapt during the COVID-19 pandemic.',
+        'Focused on supporting community growth through accessible digital solutions.',
+      ],
+    },
+    {
+      role: 'Volunteer',
+      company: 'Steel City Code',
+      period: '2022 - 2023',
+      description: [
+        'Taught beginner to intermediate Python programming to younger students, focusing on core concepts, problem-solving skills, and hands-on project development.',
       ],
     },
   ];
@@ -95,7 +103,7 @@ const Resume = () => {
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl font-bold">Resume</h2>
           <a
-            href="/Resume.pdf"
+            href="/Jason Chen.pdf"
             className="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors"
             download
           >
