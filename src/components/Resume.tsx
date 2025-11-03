@@ -56,20 +56,12 @@ const Resume = () => {
       ],
     },
     {
-      role: 'Co-founder, Lead Frontend Developer',
+      role: 'Frontend Developer',
       company: 'WebRising',
       period: '2021 - 2023',
       description: [
         'A collaborative volunteer-based web development organization that creates fullstack websites for local businesses at no cost, helping them maintain an online presence and adapt during the COVID-19 pandemic.',
         'Focused on supporting community growth through accessible digital solutions.',
-      ],
-    },
-    {
-      role: 'Volunteer',
-      company: 'Steel City Code',
-      period: '2022 - 2023',
-      description: [
-        'Taught beginner to intermediate Python programming to younger students, focusing on core concepts, problem-solving skills, and hands-on project development.',
       ],
     },
   ];
