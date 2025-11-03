@@ -57,10 +57,10 @@ const GitHubActivity = () => {
           throw new Error(data.error || 'Failed to fetch GitHub data');
         }
 
-        setCommits(data.commits);
-        setPinnedRepos(data.pinnedRepos);
-        setContributionSvg(data.contributionSvg);
-        setContributionData(data.contributionData);
+        setCommits(Array.isArray(data.commits) ? data.commits : []);
+        setPinnedRepos(Array.isArray(data.pinnedRepos) ? data.pinnedRepos : []);
+        setContributionSvg(typeof data.contributionSvg === 'string' ? data.contributionSvg : '');
+        setContributionData(data.contributionData ?? null);
         setLoading(false);
       } catch (err: any) {
         console.error('GitHub data fetch error:', err);
@@ -163,7 +163,7 @@ const GitHubActivity = () => {
                   </div>
                 ))}
               </div>
-            ) : (
+            ) : Array.isArray(pinnedRepos) ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {pinnedRepos.map((repo) => (
                   <motion.a
@@ -215,7 +215,7 @@ const GitHubActivity = () => {
                   <div key={i} className="h-20 w-full bg-gray-200 rounded-lg" />
                 ))}
               </div>
-            ) : (
+            ) : Array.isArray(commits) ? (
               <div className="space-y-4">
                 {commits.length > 0 ? (
                   commits.map((commit) => (
@@ -251,7 +251,7 @@ const GitHubActivity = () => {
                   </div>
                 )}
               </div>
-            )}
+            ) : null}
           </motion.div>
         </div>
       </motion.div>

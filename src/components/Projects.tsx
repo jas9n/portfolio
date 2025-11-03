@@ -26,7 +26,7 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/jas9n/pomodoro',
   },
   {
-    title: 'JagTrim International',
+    title: 'Jag International Trim',
     description: 'A modern portfolio website for a clothing button company with dynamic animations.',
     technologies: ['Vue', 'JavaScript', 'Tailwind CSS', 'GSAP'],
     image: '/jagtrim.png',
