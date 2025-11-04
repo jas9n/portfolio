@@ -77,6 +77,12 @@ export async function GET() {
 
     const pinnedData = await pinnedResponse.json();
 
+    // Check for GraphQL errors
+    if (pinnedData.errors) {
+      console.error('GraphQL errors:', pinnedData.errors);
+      throw new Error('Failed to fetch pinned repos: GraphQL error');
+    }
+
     // Fetch contribution graph HTML
     const contributionResponse = await fetch(`https://github.com/users/${username}/contributions`, {
       headers: {
@@ -109,22 +115,39 @@ export async function GET() {
     }
 
     // Get contribution data from GraphQL response
-    const contributionData = pinnedData.data?.user?.contributionsCollection?.contributionCalendar;
+    const contributionData = pinnedData.data?.user?.contributionsCollection?.contributionCalendar || null;
+
+    // Transform pinned repos to match the expected format
+    const pinnedRepos = Array.isArray(pinnedData.data?.user?.pinnedItems?.nodes) 
+      ? pinnedData.data.user.pinnedItems.nodes.map((repo: any) => ({
+      name: repo.name || '',
+      description: repo.description || '',
+      url: repo.url || '',
+      stars: repo.stargazerCount || 0,
+      forks: repo.forkCount || 0,
+      language: repo.primaryLanguage?.name || ''
+    }))
+      : [];
+
+    // Transform commits safely
+    const commits = Array.isArray(events) 
+      ? events
+          .filter((event: any) => event.type === 'PushEvent' && event.payload?.commits)
+          .flatMap((event: any) => 
+            (event.payload.commits || []).map((commit: any) => ({
+              sha: commit.sha || '',
+              message: commit.message || '',
+              date: new Date(event.created_at).toLocaleDateString(),
+              repo: event.repo?.name || '',
+              url: `https://github.com/${event.repo?.name || ''}/commit/${commit.sha || ''}`
+            }))
+          )
+          .slice(0, 5)
+      : [];
 
     return NextResponse.json({
-      commits: events
-        .filter((event: any) => event.type === 'PushEvent')
-        .flatMap((event: any) => 
-          event.payload.commits.map((commit: any) => ({
-            sha: commit.sha,
-            message: commit.message,
-            date: new Date(event.created_at).toLocaleDateString(),
-            repo: event.repo.name,
-            url: `https://github.com/${event.repo.name}/commit/${commit.sha}`
-          }))
-        )
-        .slice(0, 5),
-      pinnedRepos: pinnedData.data?.user?.pinnedItems?.nodes || [],
+      commits,
+      pinnedRepos,
       contributionSvg,
       contributionData
     });

@@ -204,7 +204,7 @@ const GitHubActivity = () => {
                   </motion.a>
                 ))}
               </div>
-            )}
+            ) : null}
           </motion.div>
 
           {/* Recent Commits */}
