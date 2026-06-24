@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from 'react';
 import SpotifyNowPlaying from './SpotifyNowPlaying';
 import Link from 'next/link';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
@@ -49,8 +49,17 @@ type HeroSlide = {
   content: (isVisible: boolean) => ReactNode;
 };
 
+type HeroRipple = {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+};
+
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [ripples, setRipples] = useState<HeroRipple[]>([]);
+  const rippleIdRef = useRef(0);
 
   const slides: HeroSlide[] = [
     {
@@ -172,11 +181,48 @@ const Hero = () => {
     }
   };
 
+  const handleHeroPointerDown = (event: PointerEvent<HTMLElement>) => {
+    if (event.button !== 0) return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const id = rippleIdRef.current;
+    rippleIdRef.current += 1;
+
+    const ripple: HeroRipple = {
+      id,
+      x: event.clientX - bounds.left,
+      y: event.clientY - bounds.top,
+      size: Math.min(Math.max(bounds.width, bounds.height) * 0.72, 900),
+    };
+
+    setRipples((currentRipples) => [...currentRipples.slice(-5), ripple]);
+    window.setTimeout(() => {
+      setRipples((currentRipples) => currentRipples.filter((item) => item.id !== id));
+    }, 2100);
+  };
+
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 text-slate-100">
+    <section
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 text-slate-100"
+      onPointerDown={handleHeroPointerDown}
+    >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 hero-dynamic-bg">
         <div className="hero-bg-grid absolute inset-0" />
         <div className="hero-bg-dots absolute inset-0" />
+        <div className="hero-click-ripples absolute inset-0">
+          {ripples.map((ripple) => (
+            <span
+              key={ripple.id}
+              className="hero-click-ripple"
+              style={{
+                left: ripple.x,
+                top: ripple.y,
+                width: ripple.size,
+                height: ripple.size,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="container relative z-10 mx-auto px-6">

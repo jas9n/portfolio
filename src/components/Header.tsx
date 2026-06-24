@@ -45,7 +45,7 @@ const Header = () => {
               alt="Profile"
               width={48}
               height={48}
-              className="rounded-full object-cover shadow-lg shadow-black/30"
+              className="rounded-full object-cover"
               priority
             />
           </Link>
