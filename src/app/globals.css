@@ -44,10 +44,93 @@
   .container {
     @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
   }
+
+  .hero-dynamic-bg {
+    background:
+      radial-gradient(circle at 18% 42%, rgba(16, 185, 129, 0.18), transparent 28%),
+      radial-gradient(circle at 82% 18%, rgba(52, 211, 153, 0.1), transparent 24%),
+      linear-gradient(135deg, #020617 0%, #0f172a 46%, #111827 100%);
+  }
+
+  .hero-dynamic-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 34%, rgba(2, 6, 23, 0.58) 100%);
+  }
+
+  .hero-bg-grid {
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.13) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.13) 1px, transparent 1px);
+    background-position: 0 0;
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+    opacity: 0.68;
+  }
+
+  .hero-bg-dots {
+    background-image: radial-gradient(circle, rgba(52, 211, 153, 0.42) 1.2px, transparent 1.4px);
+    background-position: 0 0;
+    background-size: 38px 38px;
+    mask-image: radial-gradient(ellipse at 34% 50%, black 0%, transparent 68%);
+    opacity: 0.38;
+  }
+
+  .hero-bg-dots::before,
+  .hero-bg-dots::after {
+    content: "";
+    position: absolute;
+    width: 15rem;
+    aspect-ratio: 1;
+    border: 1px solid rgba(52, 211, 153, 0.32);
+    border-radius: 9999px;
+    opacity: 0;
+    will-change: opacity, transform;
+    animation: hero-dot-ripple 7.5s ease-out infinite;
+  }
+
+  .hero-bg-dots::before {
+    left: 18%;
+    top: 48%;
+  }
+
+  .hero-bg-dots::after {
+    left: 76%;
+    top: 30%;
+    width: 19rem;
+    border-color: rgba(148, 163, 184, 0.22);
+    animation-delay: 3.5s;
+  }
+
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@keyframes hero-dot-ripple {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25);
+  }
+
+  18% {
+    opacity: 0.62;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.65);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-dots::before,
+  .hero-bg-dots::after {
+    animation: none;
+    transition: none;
   }
 }

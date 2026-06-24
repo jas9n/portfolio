@@ -1,16 +1,15 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import SpotifyNowPlaying from './SpotifyNowPlaying';
 import Link from 'next/link';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
 
 const TypewriterText = ({ text, isVisible }: { text: string; isVisible: boolean }) => {
   // const writingText = "writing";
-  const codeText = "<code/>";
   // const writingChars = writingText.split('');
-  const codeChars = codeText.split('');
+  const codeChars = text.split('');
   
   return (
     <div className="flex items-center space-x-2 md:space-x-3 lg:space-x-4">
@@ -21,7 +20,7 @@ const TypewriterText = ({ text, isVisible }: { text: string; isVisible: boolean 
             initial={{ opacity: 0 }}
             animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.1, delay: index * 0.1 }}
-            className="text-gray-900 tracking-tight"
+            className="text-slate-100 tracking-tight"
           >
             {char}
           </motion.span>
@@ -45,121 +44,113 @@ const TypewriterText = ({ text, isVisible }: { text: string; isVisible: boolean 
   );
 };
 
+type HeroSlide = {
+  id: string;
+  content: (isVisible: boolean) => ReactNode;
+};
+
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const slides = [
+  const slides: HeroSlide[] = [
     {
-      id: 1,
-      content: (
+      id: 'name',
+      content: () => (
         <div className="h-8 md:h-auto flex items-center">
           <span className="text-emerald-500 tracking-tight text-5xl lg:text-6xl">Jason Chen</span>
         </div>
       )
     },
-    // {
-    //   id: 2,
-    //   content: (
-    //     <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-    //       <span className="text-gray-900 tracking-tight">from</span>
-    //       <span className="text-emerald-500 tracking-tight">Brooklyn, NY</span>
-    //     </div>
-    //   )
-    // },
     {
-      id: 2,
-      content: (
+      id: 'location',
+      content: () => (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-gray-900 tracking-tight">a</span>
+          <span className="text-slate-100 tracking-tight">from</span>
+          <span className="text-emerald-500 tracking-tight">Brooklyn, NY</span>
+        </div>
+      )
+    },
+    {
+      id: 'software-engineer',
+      content: () => (
+        <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
+          <span className="text-slate-100 tracking-tight">a</span>
           <span className="text-emerald-500 tracking-tight">software engineer</span>
         </div>
       )
     },
     {
-      id: 3,
-      content: (
+      id: 'code',
+      content: (isVisible) => (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-gray-900 tracking-tight">writing</span>
-          <TypewriterText text="<code/>" isVisible={currentSlide === 2} />
+          <span className="text-slate-100 tracking-tight">writing</span>
+          <TypewriterText text="<code/>" isVisible={isVisible} />
         </div>
       )
     },
+    // {
+    //   id: 'fashion-frontend',
+    //   content: () => (
+    //     <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
+    //       <span className="text-slate-100 tracking-tight">into</span>
+    //       <span className="text-emerald-500 tracking-tight">fashion</span>
+    //       <span className="text-slate-100 tracking-tight">&</span>
+    //       <span className="text-emerald-500 tracking-tight">frontend</span>
+    //     </div>
+    //   )
+    // },
     {
-      id: 4,
-      content: (
+      id: 'ideas',
+      content: () => (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-gray-900 tracking-tight">into</span>
-          <span className="text-emerald-500 tracking-tight">fashion</span>
-          <span className="text-gray-900 tracking-tight">&</span>
-          <span className="text-emerald-500 tracking-tight">frontend</span>
-        </div>
-      )
-    },
-    {
-      id: 5,
-      content: (
-        <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-          <span className="text-gray-900 tracking-tight">turning</span>
+          <span className="text-slate-100 tracking-tight">turning</span>
           <span className="text-emerald-500 tracking-tight">ideas</span>
-          <span className="text-gray-900 tracking-tight">into</span>
+          <span className="text-slate-100 tracking-tight">into</span>
           <span className="text-emerald-500 tracking-tight">reality</span>
         </div>
       )
     },
     {
-      id: 6,
-      content: (
+      id: 'learning',
+      content: () => (
         <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
           <span className="text-emerald-500 tracking-tight">learning</span>
-          <span className="text-gray-900 tracking-tight">something</span>
+          <span className="text-slate-100 tracking-tight">something</span>
           <span className="text-emerald-500 tracking-tight">new</span>
         </div>
       )
     },
     
     {
-      id: 7,
-      content: (
+      id: 'spotify',
+      content: (isVisible) => (
         <div className="h-8 md:h-auto flex items-center relative">
           <div className="flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-            <span className="text-gray-900 tracking-tight whitespace-nowrap">listening to</span>
+            <span className="text-slate-100 tracking-tight whitespace-nowrap">listening to</span>
             <div className='absolute left-full top-1/2 -translate-y-1/2'>
-              <SpotifyNowPlaying isVisible={currentSlide === 6} />
+              <SpotifyNowPlaying isVisible={isVisible} />
             </div>
           </div>
         </div>
       )
-    },
-    // {
-    //   id: 9,
-    //   content: (
-    //     <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-    //       <span className="text-gray-900 tracking-tight">a</span>
-    //       <span className="text-emerald-500 tracking-tight">movie</span>
-    //       <span className="text-emerald-500 tracking-tight">enthusiast</span>
-    //     </div>
-    //   )
-    // },
-    // {
-    //   id: 10,
-    //   content: (
-    //     <div className="h-8 md:h-auto flex items-center space-x-2 md:space-x-3 lg:space-x-4">
-    //       <span className="text-emerald-500 tracking-tight">debugging</span>
-    //       <span className="text-gray-900 tracking-tight">my</span>
-    //       <span className="text-emerald-500 tracking-tight">life</span>
-    //     </div>
-    //   )
-    // },
-  
+    }
   ];
 
   useEffect(() => {
+    setCurrentSlide((slide) => Math.min(slide, Math.max(slides.length - 1, 0)));
+  }, [slides.length]);
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 3500);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
+
+  const activeSlide = slides[currentSlide] ?? slides[0];
 
   const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -182,23 +173,30 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center">
-      <div className="container mx-auto px-6">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 text-slate-100">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 hero-dynamic-bg">
+        <div className="hero-bg-grid absolute inset-0" />
+        <div className="hero-bg-dots absolute inset-0" />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-6">
         <div className="flex flex-col md:flex-row items-start md:items-baseline md:space-x-4">
-          <div className="text-6xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-0 whitespace-nowrap tracking-tight">
+          <div className="text-6xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-0 whitespace-nowrap tracking-tight text-slate-100">
             Hello! I am
           </div>
           <div className="text-3xl ml-0.5 md:ml-0 font-bold md:text-5xl lg:text-6xl">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-              >
-                {slides[currentSlide].content}
-              </motion.div>
+              {activeSlide && (
+                <motion.div
+                  key={activeSlide.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {activeSlide.content(true)}
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
         </div>
@@ -211,7 +209,7 @@ const Hero = () => {
           <Link
             href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=jasonc3805@gmail.com"
             target="_blank"
-            className="border border-emerald-500 text-emerald-500 w-auto px-6 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-semibold inline-flex items-center justify-center gap-2"
+            className="border border-emerald-400/80 bg-slate-950/40 text-emerald-300 w-auto px-6 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition-colors text-center text-sm sm:text-base font-semibold inline-flex items-center justify-center gap-2 backdrop-blur-sm"
           >
             <EnvelopeIcon className="w-5 h-5" />
             Get in Touch

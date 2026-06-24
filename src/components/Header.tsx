@@ -36,7 +36,7 @@ const socialLinks = [
 
 const Header = () => {
   return (
-    <header className="absolute top-0 w-full">
+    <header className="absolute top-0 z-50 w-full">
       <nav className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between">
           <Link href="/" className="relative w-12 h-12">
@@ -45,7 +45,7 @@ const Header = () => {
               alt="Profile"
               width={48}
               height={48}
-              className="rounded-full object-cover"
+              className="rounded-full object-cover shadow-lg shadow-black/30"
               priority
             />
           </Link>
@@ -56,7 +56,7 @@ const Header = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-emerald-500 transition-colors"
+                className="rounded-full p-2 text-slate-200 transition-colors hover:bg-white/10 hover:text-emerald-300"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 title={social.name}
