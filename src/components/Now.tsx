@@ -5,25 +5,13 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-interface SpotifyTrack {
-  title: string;
-  artist: string;
-  albumImageUrl?: string;
-  songUrl: string;
-  album?: string;
-  playCount?: number;
-}
-
 interface SpotifyData {
   isPlaying: boolean;
   title?: string;
   artist?: string;
   albumImageUrl?: string;
   songUrl?: string;
-  album?: string;
   lastPlayed?: boolean;
-  recentTrack?: SpotifyTrack | null;
-  topTrackThisWeek?: SpotifyTrack | null;
   error?: string;
 }
 
@@ -51,59 +39,6 @@ const itemVariants = {
   hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
 };
-
-const formatPlayCount = (playCount?: number) => {
-  if (!playCount) {
-    return 'Based on recent listens';
-  }
-
-  return `${playCount} ${playCount === 1 ? 'play' : 'plays'} in the past week`;
-};
-
-const SpotifyTrackRow = ({
-  label,
-  track,
-  meta,
-}: {
-  label: string;
-  track: SpotifyTrack;
-  meta?: string;
-}) => (
-  <a
-    href={track.songUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group flex items-center gap-4"
-  >
-    {track.albumImageUrl ? (
-      <Image
-        src={track.albumImageUrl}
-        alt={`${track.title} album art`}
-        width={64}
-        height={64}
-        className="h-16 w-16 flex-shrink-0 rounded-md object-cover"
-      />
-    ) : (
-      <div className="h-16 w-16 flex-shrink-0 rounded-md bg-gray-200" />
-    )}
-    <div className="min-w-0">
-      <p className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">
-        {label}
-      </p>
-      <p className="truncate text-lg font-bold text-emerald-500 group-hover:underline">
-        {track.title}
-      </p>
-      <p className="truncate text-sm text-gray-600">
-        by {track.artist}
-      </p>
-      {(track.album || meta) && (
-        <p className="mt-2 truncate text-xs font-medium text-gray-500">
-          {meta || track.album}
-        </p>
-      )}
-    </div>
-  </a>
-);
 
 const Now = () => {
   const [spotify, setSpotify] = useState<SpotifyData | null>(null);
@@ -157,16 +92,6 @@ const Now = () => {
   }, [inView]);
 
   const hasSpotifyTrack = spotify?.title && spotify.artist && spotify.songUrl;
-  const latestSpotifyTrack: SpotifyTrack | null = hasSpotifyTrack
-    ? {
-        title: spotify.title!,
-        artist: spotify.artist!,
-        albumImageUrl: spotify.albumImageUrl,
-        songUrl: spotify.songUrl!,
-        album: spotify.album,
-      }
-    : null;
-  const topTrackThisWeek = spotify?.topTrackThisWeek || null;
   const latestCommit = commits[0];
 
   return (
@@ -200,48 +125,41 @@ const Now = () => {
               </div>
 
               {spotifyLoading ? (
-                <div className="animate-pulse space-y-5">
-                  <div className="flex items-center gap-4">
-                    <div className="h-16 w-16 rounded-md bg-gray-200" />
-                    <div className="space-y-3">
-                      <div className="h-3 w-24 rounded bg-gray-200" />
-                      <div className="h-4 w-40 rounded bg-gray-200" />
-                      <div className="h-3 w-28 rounded bg-gray-200" />
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 border-t border-gray-100 pt-5">
-                    <div className="h-16 w-16 rounded-md bg-gray-200" />
-                    <div className="space-y-3">
-                      <div className="h-3 w-32 rounded bg-gray-200" />
-                      <div className="h-4 w-36 rounded bg-gray-200" />
-                      <div className="h-3 w-24 rounded bg-gray-200" />
-                    </div>
+                <div className="flex animate-pulse items-center gap-4">
+                  <div className="h-16 w-16 rounded-md bg-gray-200" />
+                  <div className="space-y-3">
+                    <div className="h-4 w-40 rounded bg-gray-200" />
+                    <div className="h-3 w-28 rounded bg-gray-200" />
                   </div>
                 </div>
-              ) : latestSpotifyTrack || topTrackThisWeek ? (
-                <div className="space-y-5">
-                  {latestSpotifyTrack && (
-                    <SpotifyTrackRow
-                      label={spotify?.isPlaying ? 'Playing now' : 'Recent song'}
-                      track={latestSpotifyTrack}
-                      meta={latestSpotifyTrack.album}
+              ) : hasSpotifyTrack ? (
+                <a
+                  href={spotify.songUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4"
+                >
+                  {spotify.albumImageUrl && (
+                    <Image
+                      src={spotify.albumImageUrl}
+                      alt={`${spotify.title} album art`}
+                      width={64}
+                      height={64}
+                      className="h-16 w-16 flex-shrink-0 rounded-md object-cover"
                     />
                   )}
-                  {topTrackThisWeek && (
-                    <div className={latestSpotifyTrack ? 'border-t border-gray-100 pt-5' : ''}>
-                      <SpotifyTrackRow
-                        label="Top track this week"
-                        track={topTrackThisWeek}
-                        meta={formatPlayCount(topTrackThisWeek.playCount)}
-                      />
-                    </div>
-                  )}
-                  {!topTrackThisWeek && (
-                    <p className="border-t border-gray-100 pt-5 text-sm text-gray-600">
-                      Top track this week will appear after a few recent listens.
+                  <div className="min-w-0">
+                    <p className="truncate text-lg font-bold text-emerald-500">
+                      {spotify.title}
                     </p>
-                  )}
-                </div>
+                    <p className="truncate text-sm text-gray-600">
+                      by {spotify.artist}
+                    </p>
+                    <p className="mt-2 text-xs font-medium text-gray-500">
+                      {spotify.isPlaying ? 'Playing now' : 'Recently played'}
+                    </p>
+                  </div>
+                </a>
               ) : (
                 <p className="text-gray-600">
                   Spotify is quiet right now.

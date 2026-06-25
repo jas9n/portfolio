@@ -10,113 +10,8 @@ const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
-const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?limit=50`;
+const LAST_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?limit=1`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
-const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-
-interface SpotifyArtist {
-  name: string;
-}
-
-interface SpotifyTrack {
-  id?: string;
-  name?: string;
-  artists?: SpotifyArtist[];
-  album?: {
-    images?: { url: string }[];
-    name?: string;
-  };
-  external_urls?: {
-    spotify?: string;
-  };
-}
-
-interface RecentlyPlayedItem {
-  track?: SpotifyTrack;
-  played_at?: string;
-}
-
-interface TrackSummary {
-  title: string;
-  artist: string;
-  albumImageUrl?: string;
-  songUrl: string;
-  album?: string;
-  playedAt?: string;
-  playCount?: number;
-}
-
-const noStoreHeaders = {
-  'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-  'Pragma': 'no-cache',
-  'Expires': '0',
-  'Surrogate-Control': 'no-store'
-};
-
-const jsonResponse = (data: Record<string, unknown>) => NextResponse.json(data, {
-  headers: noStoreHeaders,
-});
-
-const summarizeTrack = (track?: SpotifyTrack, playedAt?: string): TrackSummary | null => {
-  if (!track?.name || !track.external_urls?.spotify) {
-    return null;
-  }
-
-  return {
-    title: track.name,
-    artist: track.artists?.map(artist => artist.name).join(', ') || 'Unknown artist',
-    albumImageUrl: track.album?.images?.[0]?.url,
-    songUrl: track.external_urls.spotify,
-    album: track.album?.name,
-    playedAt,
-  };
-};
-
-const getTopTrackThisWeek = (recentlyPlayed: RecentlyPlayedItem[]) => {
-  const cutoff = Date.now() - ONE_WEEK_MS;
-  const trackCounts = new Map<string, TrackSummary & { latestPlayedAt: number }>();
-
-  recentlyPlayed.forEach(item => {
-    const playedAt = item.played_at ? new Date(item.played_at).getTime() : 0;
-
-    if (!playedAt || playedAt < cutoff) {
-      return;
-    }
-
-    const summary = summarizeTrack(item.track, item.played_at);
-
-    if (!summary) {
-      return;
-    }
-
-    const key = item.track?.id || `${summary.title}-${summary.artist}`;
-    const existing = trackCounts.get(key);
-
-    if (existing) {
-      existing.playCount = (existing.playCount || 1) + 1;
-      existing.latestPlayedAt = Math.max(existing.latestPlayedAt, playedAt);
-      return;
-    }
-
-    trackCounts.set(key, {
-      ...summary,
-      playCount: 1,
-      latestPlayedAt: playedAt,
-    });
-  });
-
-  const topTrack = [...trackCounts.values()].sort((a, b) => {
-    const countDifference = (b.playCount || 0) - (a.playCount || 0);
-    return countDifference || b.latestPlayedAt - a.latestPlayedAt;
-  })[0];
-
-  if (!topTrack) {
-    return null;
-  }
-
-  const { latestPlayedAt: _latestPlayedAt, ...summary } = topTrack;
-  return summary;
-};
 
 const getAccessToken = async () => {
   try {
@@ -176,9 +71,9 @@ const getNowPlaying = async (access_token: string) => {
   }
 };
 
-const getRecentlyPlayed = async (access_token: string): Promise<RecentlyPlayedItem[]> => {
+const getLastPlayed = async (access_token: string) => {
   try {
-    const response = await fetch(RECENTLY_PLAYED_ENDPOINT, {
+    const response = await fetch(LAST_PLAYED_ENDPOINT, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
@@ -186,14 +81,14 @@ const getRecentlyPlayed = async (access_token: string): Promise<RecentlyPlayedIt
 
     if (!response.ok) {
       const text = await response.text();
-      console.error('Recently played response:', text);
+      console.error('Last played response:', text);
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    return Array.isArray(data.items) ? data.items : [];
+    return data.items[0];
   } catch (error) {
-    console.error('Error getting recently played:', error);
+    console.error('Error getting last played:', error);
     throw error;
   }
 };
@@ -202,47 +97,81 @@ export async function GET() {
   try {
     if (!refresh_token) {
       console.error('No refresh token found in environment variables');
-      return jsonResponse({ 
+      return NextResponse.json({ 
         isPlaying: false,
         error: 'No refresh token configured'
+      }, {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'Surrogate-Control': 'no-store'
+        }
       });
     }
 
     const access_token = await getAccessToken();
-    const [currentlyPlaying, recentlyPlayed] = await Promise.all([
-      getNowPlaying(access_token),
-      getRecentlyPlayed(access_token),
-    ]);
+    const currentlyPlaying = await getNowPlaying(access_token);
 
-    const currentTrack = summarizeTrack(currentlyPlaying?.item);
-    const recentTrack = summarizeTrack(recentlyPlayed[0]?.track, recentlyPlayed[0]?.played_at);
-    const primaryTrack = currentTrack || recentTrack;
-    const topTrackThisWeek = getTopTrackThisWeek(recentlyPlayed);
-    const isPlaying = Boolean(currentTrack && currentlyPlaying?.is_playing);
-
-    if (primaryTrack) {
-      return jsonResponse({
-        isPlaying,
-        title: primaryTrack.title,
-        artist: primaryTrack.artist,
-        albumImageUrl: primaryTrack.albumImageUrl,
-        songUrl: primaryTrack.songUrl,
-        album: primaryTrack.album,
-        lastPlayed: !isPlaying,
-        recentTrack,
-        topTrackThisWeek,
+    // If there's a currently playing track, return it
+    if (currentlyPlaying?.item) {
+      return NextResponse.json({
+        isPlaying: true,
+        title: currentlyPlaying.item.name,
+        artist: currentlyPlaying.item.artists.map((_artist: any) => _artist.name).join(', '),
+        albumImageUrl: currentlyPlaying.item.album.images[0].url,
+        songUrl: currentlyPlaying.item.external_urls.spotify,
+      }, {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'Surrogate-Control': 'no-store'
+        }
       });
     }
 
-    return jsonResponse({
-      isPlaying: false,
-      topTrackThisWeek,
+    // If nothing is playing, get the last played track
+    const lastPlayed = await getLastPlayed(access_token);
+    
+    if (lastPlayed?.track) {
+      return NextResponse.json({
+        isPlaying: false,
+        title: lastPlayed.track.name,
+        artist: lastPlayed.track.artists.map((_artist: any) => _artist.name).join(', '),
+        albumImageUrl: lastPlayed.track.album.images[0].url,
+        songUrl: lastPlayed.track.external_urls.spotify,
+        lastPlayed: true,
+      }, {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'Surrogate-Control': 'no-store'
+        }
+      });
+    }
+
+    return NextResponse.json({ isPlaying: false }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'Surrogate-Control': 'no-store'
+      }
     });
   } catch (error) {
     console.error('Error in GET route:', error);
-    return jsonResponse({ 
+    return NextResponse.json({ 
       isPlaying: false,
       error: error instanceof Error ? error.message : 'Unknown error'
+    }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'Surrogate-Control': 'no-store'
+      }
     });
   }
-}
+} 
